@@ -48,12 +48,15 @@ const BlogPosts = {
   },
   update: function(updatedPost) {
     const {id} = updatedPost;
+    console.log('a1');
     const postIndex = this.posts.findIndex(
-      post => post.id === updatedPost.id);
+      post => post.id === id);
+    console.log('a2');
     if (postIndex === -1) {
       throw new StorageException(
         `Can't update item \`${id}\` because doesn't exist.`)
     }
+    console.log('a3');
     this.posts[postIndex] = Object.assign(
       this.posts[postIndex], updatedPost);
     return this.posts[postIndex];
@@ -62,7 +65,7 @@ const BlogPosts = {
 
 function createBlogPostsModel() {
   const storage = Object.create(BlogPosts);
-  storage.posts = [];
+  storage.posts = [{id: "f8cdf790-094e-4f37-9ab1-464822e9c9fc"}];
   return storage;
 }
 
